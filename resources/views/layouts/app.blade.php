@@ -65,7 +65,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -102,7 +102,8 @@
                         </div>
                         <div class="card-body">
                             @foreach ($memos as $memo)
-                                <a class="card-text d-block">{{ $memo['content'] }}</a>
+                                <a href="/edit/{{ $memo['id'] }}"
+                                    class="card-text d-block">{{ $memo['content'] }}</a>
                             @endforeach
                         </div>
                     </div>
