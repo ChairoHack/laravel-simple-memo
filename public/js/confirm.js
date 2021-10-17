@@ -3,7 +3,7 @@ function deleteHandle(event) {
     event.preventDefault();
     if (window.confirm("本当に削除していいですか？")) {
         //削除OKならformを再開
-        document.getElementById("delete-form").onsubmit();
+        document.getElementById("delete-form").submit();
     } else {
         alert("キャンセルしました");
     }

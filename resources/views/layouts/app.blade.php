@@ -20,6 +20,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
 </head>
 
 <body>
@@ -66,7 +69,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -85,33 +88,33 @@
         {{-- 3カラムに変更 --}}
         <main class="">
             <div class="row">
-                <div class="col-md-2 p-0">
+                <div class="col-sm-12 col-md-2 p-0">
                     <div class="card">
                         <div class="card-header">
                             タグ一覧
                         </div>
-                        <div class="card-body">
+                        <div class="card-body my-card-body">
                             <a href="/" class="card-text d-block">すべて表示</a>
                             @foreach ($tags as $tag)
-                                <a href="/?tag={{ $tag['id'] }}" class="card-text d-block">{{ $tag['name'] }}</a>
+                                <a href="/?tag={{ $tag['id'] }}" class="card-text d-block ellipsis">{{ $tag['name'] }}</a>
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 p-0">
+                <div class="col-sm-12 col-md-4 p-0">
                     <div class="card">
-                        <div class="card-header">
-                            メモ一覧
+                        <div class="card-header d-flex justify-content-between">
+                            メモ一覧<a href="{{ route('home') }}" <i class="fas fa-plus-circle mt-1 mr-2"></i></a>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body my-card-body">
                             @foreach ($memos as $memo)
                                 <a href="/edit/{{ $memo['id'] }}"
-                                    class="card-text d-block">{{ $memo['content'] }}</a>
+                                    class="card-text d-block ellipsis">{{ $memo['content'] }}</a>
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 p-0">
+                <div class="col-sm-12 col-md-6 p-0">
                     @yield('content')
                 </div>
             </div>

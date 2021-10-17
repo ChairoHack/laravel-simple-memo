@@ -6,3 +6,29 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.fa-plus-circle {
+    color: $black;
+    cursor: pointer;
+}
+
+.fa-trash {
+    cursor: pointer;
+}
+
+.my-card-body {
+    height: calc(100vh - (55px + 48px));
+}
+
+.ellipsis{
+    overflow: hedden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media screen and (max-width:768px){
+    .my-card-body {
+        height: auto;
+        max-height: 50vh ;
+    }
+}

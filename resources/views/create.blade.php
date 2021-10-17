@@ -6,7 +6,7 @@
             新規メモ作成
         </div>
         {{-- route('store')とかくと/store --}}
-        <form class="card-body" action="{{ route('store') }} " method="POST">
+        <form class="card-body my-card-body" action="{{ route('store') }} " method="POST">
             @csrf
             <div class="form-group">
                 <textarea class="form-control" name="content" rows="3" placeholder="ここにメモを入力"></textarea>
