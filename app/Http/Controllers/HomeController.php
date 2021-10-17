@@ -27,25 +27,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // メモを取得
-        $memos = Memo::select('memos.*')
-            ->where('user_id', '=', \Auth::id())
-            ->whereNull('deleted_at')
-            ->orderBy('updated_at', 'DESC') // ASC:小さい順、DESC:大きい順
-            ->get();
-
         $tags = Tag::select('tags.*')
             ->where('user_id', '=', \Auth::id())
             ->whereNull('deleted_at')
             ->orderBy('updated_at', 'DESC')
             ->get();
 
-        return view('create', compact('memos', 'tags'));
+        return view('create', compact('tags'));
     }
 
     public function store(Request $request)
     {
         $posts = $request->all();
+        $request->validate(['content' => 'required']);
         //dd($posts);
         //dd(\Auth::id());
         //トランザクション開始
@@ -91,13 +85,6 @@ class HomeController extends Controller
 
     public function edit($id)
     {
-        // メモを取得
-        $memos = Memo::select('memos.*')
-            ->where('user_id', '=', \Auth::id())
-            ->whereNull('deleted_at')
-            ->orderBy('updated_at', 'DESC') // ASC:小さい順、DESC:大きい順
-            ->get();
-
         //$edit_memo = Memo::find($id);
         $edit_memo = Memo::select('memos.*', 'tags.id AS tag_id')
             ->leftJoin('memo_tags', 'memo_tags.memo_id', '=', 'memos.id')
@@ -117,12 +104,13 @@ class HomeController extends Controller
             ->orderBy('updated_at', 'DESC') // ASC:小さい順、DESC:大きい順
             ->get();
 
-        return view('edit', compact('memos', 'edit_memo', 'include_tags', 'tags'));
+        return view('edit', compact('edit_memo', 'include_tags', 'tags'));
     }
 
     public function update(Request $request)
     {
         $posts = $request->all();
+        $request->validate(['content' => 'required']);
         //dd($posts);
         //dd(\Auth::id());
         DB::transaction(function () use ($posts) {
